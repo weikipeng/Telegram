@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.google.gms:google-services:3.0.0'
     }
 }
@@ -21,6 +21,7 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '25.1.0'
+    playServicesVersion = '10.0.1'
     guavaVersion = '18.0'
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'

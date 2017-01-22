@@ -9,19 +9,19 @@ configurations {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services-gcm:9.6.1'
-    compile 'com.google.android.gms:play-services-maps:9.6.1'
-    compile 'com.google.android.gms:play-services-vision:9.6.1'
-    compile 'com.android.support:support-core-ui:24.2.1'
-    compile 'com.android.support:support-compat:24.2.1'
-    compile 'com.android.support:support-core-utils:24.2.1'
+    compile "com.google.android.gms:play-services-gcm:$rootProject.playServicesVersion"
+    compile "com.google.android.gms:play-services-maps:$rootProject.playServicesVersion"
+    compile "com.google.android.gms:play-services-vision:$rootProject.playServicesVersion"
+    compile "com.android.support:support-core-ui:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-compat:$rootProject.supportLibraryVersion"
+    compile "com.android.support:support-core-utils:$rootProject.supportLibraryVersion"
     compile 'net.hockeyapp.android:HockeySDK:4.0.1'
     compile 'com.googlecode.mp4parser:isoparser:1.0.6'
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     useLibrary 'org.apache.http.legacy'
     defaultConfig.applicationId = "org.telegram.messenger"
@@ -61,8 +61,9 @@ android {
         debug {
             debuggable true
             jniDebuggable true
-            signingConfig signingConfigs.debug
-            applicationIdSuffix ".beta"
+            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.debug
+//            applicationIdSuffix ".beta"
         }
 
         release {
@@ -118,8 +119,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionName "3.13.1"
 
         externalNativeBuild {
