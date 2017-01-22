@@ -109,6 +109,7 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
     private FrameLayout shadowTablet;
     private FrameLayout shadowTabletSide;
     private View backgroundTablet;
+    /**整个最外面布局*/
     protected DrawerLayoutContainer drawerLayoutContainer;
     private DrawerLayoutAdapter drawerLayoutAdapter;
     private PasscodeView passcodeView;

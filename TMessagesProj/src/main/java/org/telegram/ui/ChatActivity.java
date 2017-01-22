@@ -145,6 +145,7 @@ import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 import java.util.regex.Matcher;
 
+/**聊天窗口*/
 @SuppressWarnings("unchecked")
 public class ChatActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate,
         PhotoViewer.PhotoViewerProvider {

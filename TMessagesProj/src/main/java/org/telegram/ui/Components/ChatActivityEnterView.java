@@ -85,6 +85,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Locale;
 
+// TODO: 2017/1/22 研究发送布局
 public class ChatActivityEnterView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, StickersAlert.StickersAlertDelegate {
 
     public interface ChatActivityEnterViewDelegate {
