@@ -2010,6 +2010,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return revealRadius;
     }
 
+    /**使用6.0动画*/
     @SuppressLint("NewApi")
     private void startRevealAnimation(final boolean open) {
         containerView.setTranslationY(0);

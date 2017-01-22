@@ -205,6 +205,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private LinearLayoutManager mentionLayoutManager;
     private ExtendedGridLayoutManager mentionGridLayoutManager;
     private AnimatorSet mentionListAnimation;
+    /**聊天窗口 底部 发送 菜单选项 弹窗*/
     private ChatAttachAlert chatAttachAlert;
     private LinearLayout reportSpamView;
     private AnimatorSet reportSpamViewAnimator;
