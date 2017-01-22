@@ -2015,6 +2015,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private void startRevealAnimation(final boolean open) {
         containerView.setTranslationY(0);
 
+        //初始化动画
         final AnimatorSet animatorSet = new AnimatorSet();
 
         View view = delegate.getRevealView();
@@ -2079,6 +2080,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         }
         animatorSet.playTogether(animators);
+        //添加动画监听器
         animatorSet.addListener(new AnimatorListenerAdapter() {
             public void onAnimationEnd(Animator animation) {
                 if (currentSheetAnimation != null && currentSheetAnimation.equals(animation)) {
@@ -2169,6 +2171,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         }
         currentSheetAnimation = animatorSet;
+        //开始动画
         animatorSet.start();
     }
 
