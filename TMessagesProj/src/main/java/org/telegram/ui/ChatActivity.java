@@ -968,6 +968,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         chatActivityEnterView.closeKeyboard();
                     }
                     chatAttachAlert.init();
+                    // TODO: 2017/1/22 wiki mark
+                    //显示聊天底部菜单 输入选项 相机 照片等
                     showDialog(chatAttachAlert);
                 } else if (id == bot_help) {
                     SendMessagesHelper.getInstance().sendMessage("/help", dialog_id, null, null, false, null, null, null);
@@ -2786,6 +2788,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (getParentActivity() == null) {
             return;
         }
+        //初始化底部 输入 选项菜单 窗口
         if (chatAttachAlert == null) {
             chatAttachAlert = new ChatAttachAlert(getParentActivity(), this);
             chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {

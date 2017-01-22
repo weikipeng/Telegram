@@ -247,6 +247,7 @@ public class Theme {
     public static PorterDuffColorFilter colorPressedFilter;
     private static int currentColor;
 
+    /**聊天发送菜单 照相机图片等*/
     public static Drawable attachButtonDrawables[] = new Drawable[8];
 
     private static Paint maskPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -375,6 +376,7 @@ public class Theme {
 
     public static void loadChatResources(Context context) {
         if (attachButtonDrawables[0] == null) {
+            //聊天发送菜单 照相机图片
             attachButtonDrawables[0] = context.getResources().getDrawable(R.drawable.attach_camera_states);
             attachButtonDrawables[1] = context.getResources().getDrawable(R.drawable.attach_gallery_states);
             attachButtonDrawables[2] = context.getResources().getDrawable(R.drawable.attach_video_states);

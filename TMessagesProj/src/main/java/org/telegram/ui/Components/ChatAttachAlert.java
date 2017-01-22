@@ -620,6 +620,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 LocaleController.getString("ChatLocation", R.string.ChatLocation),
                 ""
         };
+        //添加 底部聊天发送 弹出菜单子项 照相机等
         for (int a = 0; a < 8; a++) {
             AttachButton attachButton = new AttachButton(context);
             attachButton.setTextAndIcon(items[a], Theme.attachButtonDrawables[a]);
@@ -1801,6 +1802,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             View view;
             switch (viewType) {
                 case 0:
+                    // TODO: 2017/1/22 研究 这个地方 把聊天 选项 窗口 赋值给了
+                    //操作 聊天 弹出的菜单 窗口
                     view = attachView;
                     break;
                 case 1:
