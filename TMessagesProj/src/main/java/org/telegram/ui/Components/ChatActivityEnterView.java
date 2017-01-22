@@ -297,6 +297,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     // TODO: 2017/1/22 研究语音
     /**语音录制发送按钮*/
     private ImageView audioSendButton;
+    /**录音视图面板*/
     private FrameLayout recordPanel;
     private FrameLayout recordedAudioPanel;
     private SeekBarWaveformView recordedAudioSeekBar;
@@ -436,6 +437,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
             }
             lastUpdateTime = System.currentTimeMillis();
+            Log.e("wikiDebug", "ChatActivityEnterView RecordDot dotDrawable onDraw===");
             dotDrawable.draw(canvas);
             invalidate();
         }
@@ -547,6 +549,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         textFieldContainer.setOrientation(LinearLayout.HORIZONTAL);
         addView(textFieldContainer, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT | Gravity.TOP, 0, 2, 0, 0));
 
+        //添加了录音布局
         FrameLayout frameLayout = new FrameLayout(context);
         textFieldContainer.addView(frameLayout, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1.0f));
 
@@ -916,21 +919,21 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                     startedDraggingX = -1;
                     MediaController.getInstance().startRecording(dialog_id, replyingMessageObject);
-                    Log.e("wikidebug", "MotionEvent.ACTION_DOWN updateAudioRecordIntefrace ===");
+                    Log.e("wikiDebug", "MotionEvent.ACTION_DOWN updateAudioRecordIntefrace ===");
                     updateAudioRecordIntefrace();
                     audioSendButton.getParent().requestDisallowInterceptTouchEvent(true);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP || motionEvent.getAction() == MotionEvent.ACTION_CANCEL) {
                     startedDraggingX = -1;
                     MediaController.getInstance().stopRecording(1);
                     recordingAudio = false;
-                    Log.e("wikidebug", "MotionEvent.ACTION_UP or ACTION_CANCEL updateAudioRecordIntefrace ===");
+                    Log.e("wikiDebug", "MotionEvent.ACTION_UP or ACTION_CANCEL updateAudioRecordIntefrace ===");
                     updateAudioRecordIntefrace();
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_MOVE && recordingAudio) {
                     float x = motionEvent.getX();
                     if (x < -distCanMove) {
                         MediaController.getInstance().stopRecording(0);
                         recordingAudio = false;
-                        Log.e("wikidebug", "MotionEvent.ACTION_MOVE updateAudioRecordIntefrace");
+                        Log.e("wikiDebug", "MotionEvent.ACTION_MOVE updateAudioRecordIntefrace");
                         updateAudioRecordIntefrace();
                     }
 
@@ -2620,7 +2623,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (!recordingAudio) {
                 //收到通知，录音开始，更新视图
                 recordingAudio = true;
-                Log.e("wikidebug", "NotificationCenter.recordStarted updateAudioRecordIntefrace");
+                Log.e("wikiDebug", "NotificationCenter.recordStarted updateAudioRecordIntefrace");
                 updateAudioRecordIntefrace();
             }
         } else if (id == NotificationCenter.audioDidSent) {

@@ -160,8 +160,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private Dialog closeChatDialog;
     private FrameLayout progressView;
     private FrameLayout bottomOverlay;
+    /**底部输入布局*/
     protected ChatActivityEnterView chatActivityEnterView;
     private View timeItem2;
+    /**底部输入布局中菜单按钮*/
     private ActionBarMenuItem menuItem;
     private ActionBarMenuItem attachItem;
     private ActionBarMenuItem headerItem;
@@ -1083,6 +1085,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         attachItem = menu.addItem(chat_menu_attach, R.drawable.ic_ab_other).setOverrideMenuClick(true).setAllowCloseAnimation(false);
         attachItem.setVisibility(View.GONE);
+        //底部输入布局中菜单按钮
         menuItem = menu.addItem(chat_menu_attach, R.drawable.ic_ab_attach).setAllowCloseAnimation(false);
         menuItem.setBackgroundDrawable(null);
 
