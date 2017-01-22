@@ -29,6 +29,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Base64;
 
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -303,6 +304,7 @@ public class ApplicationLoader extends Application {
         applicationHandler = new Handler(applicationContext.getMainLooper());
 
         startPushService();
+        Stetho.initializeWithDefaults(this);
     }
 
     /*public static void sendRegIdToBackend(final String token) {
