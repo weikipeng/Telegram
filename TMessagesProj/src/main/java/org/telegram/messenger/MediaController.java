@@ -2637,6 +2637,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     @Override
                     public void run() {
                         recordStartRunnable = null;
+                        //发送通知，录音开始
                         NotificationCenter.getInstance().postNotificationName(NotificationCenter.recordStarted);
                     }
                 });

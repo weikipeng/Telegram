@@ -37,6 +37,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -293,6 +294,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private ImageView emojiButton;
     private EmojiView emojiView;
     private TextView recordTimeText;
+    // TODO: 2017/1/22 研究语音
+    /**语音录制发送按钮*/
     private ImageView audioSendButton;
     private FrameLayout recordPanel;
     private FrameLayout recordedAudioPanel;
@@ -300,6 +303,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private ImageView recordedAudioPlayButton;
     private TextView recordedAudioTimeTextView;
     private LinearLayout slideText;
+    /**录音按钮按住时 闪烁的红点*/
     private RecordDot recordDot;
     private SizeNotifierFrameLayout sizeNotifierLayout;
     private LinearLayout attachButton;
@@ -392,6 +396,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     };
 
+    /**录音按钮按住时 闪烁的红点*/
     private class RecordDot extends View {
 
         private Drawable dotDrawable;
@@ -436,6 +441,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
+    /**录音按钮按住时的大圆*/
     private class RecordCircle extends View {
 
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -886,6 +892,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     if (parentFragment != null) {
+                        //检查权限
                         if (Build.VERSION.SDK_INT >= 23 && parentActivity.checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
                             parentActivity.requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 3);
                             return false;
@@ -909,18 +916,21 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                     startedDraggingX = -1;
                     MediaController.getInstance().startRecording(dialog_id, replyingMessageObject);
+                    Log.e("wikidebug", "MotionEvent.ACTION_DOWN updateAudioRecordIntefrace ===");
                     updateAudioRecordIntefrace();
                     audioSendButton.getParent().requestDisallowInterceptTouchEvent(true);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP || motionEvent.getAction() == MotionEvent.ACTION_CANCEL) {
                     startedDraggingX = -1;
                     MediaController.getInstance().stopRecording(1);
                     recordingAudio = false;
+                    Log.e("wikidebug", "MotionEvent.ACTION_UP or ACTION_CANCEL updateAudioRecordIntefrace ===");
                     updateAudioRecordIntefrace();
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_MOVE && recordingAudio) {
                     float x = motionEvent.getX();
                     if (x < -distCanMove) {
                         MediaController.getInstance().stopRecording(0);
                         recordingAudio = false;
+                        Log.e("wikidebug", "MotionEvent.ACTION_MOVE updateAudioRecordIntefrace");
                         updateAudioRecordIntefrace();
                     }
 
@@ -1690,6 +1700,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageEditText.setLayoutParams(layoutParams);
     }
 
+    /**更新录音视图**/
     private void updateAudioRecordIntefrace() {
         if (recordingAudio) {
             if (audioInterfaceState == 1) {
@@ -2607,7 +2618,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         } else if (id == NotificationCenter.recordStarted) {
             if (!recordingAudio) {
+                //收到通知，录音开始，更新视图
                 recordingAudio = true;
+                Log.e("wikidebug", "NotificationCenter.recordStarted updateAudioRecordIntefrace");
                 updateAudioRecordIntefrace();
             }
         } else if (id == NotificationCenter.audioDidSent) {
